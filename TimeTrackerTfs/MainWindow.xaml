@@ -14,9 +14,13 @@
                         <ColumnDefinition Width="97*"/>
                         <ColumnDefinition Width="283*"/>
                     </Grid.ColumnDefinitions>
-                    <TextBlock x:Name="txtTimeWorked" HorizontalAlignment="Center" Margin="21.004,4,118,0" TextWrapping="Wrap" Text="00:00:00" VerticalAlignment="Top" FontSize="36" FontFamily="Arial" Width="144" Grid.Column="1"/>
+                    
+                    <TextBlock x:Name="txtTimeWorked" HorizontalAlignment="Center" Margin="24,16,0,0" TextWrapping="Wrap" Text="00:00" VerticalAlignment="Top" FontSize="36" FontFamily="Arial" Width="92"/>
                     <ListBox x:Name="lstInProgress" Background="LightGray" IsTabStop="False" FontSize="15px" Height="156" VerticalAlignment="Bottom" Grid.ColumnSpan="2"/>
                     <Ellipse x:Name="btnStatus" Grid.Column="1" HorizontalAlignment="Left" Height="20" Margin="310,0,0,0" Stroke="Black" VerticalAlignment="Top" Width="20"/>
+                    <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Margin="10,0,0,0" TextWrapping="Wrap" Text="{StaticResource TimeWorked}" VerticalAlignment="Top"/>
+                    <TextBlock x:Name="textBlock1" Grid.Column="1" HorizontalAlignment="Left" Margin="190,3,0,0" TextWrapping="Wrap" Text="{StaticResource Synced}" VerticalAlignment="Top"/>
+                    <TextBlock x:Name="txtSyncWorked" Grid.Column="1" HorizontalAlignment="Left" Margin="190,16,0,0" TextWrapping="Wrap" Text="00:00" FontSize="36" FontFamily="Arial" VerticalAlignment="Top"/>
                 </Grid>
             </TabItem>
             <TabItem Header="{StaticResource ToDo}">
@@ -55,6 +59,6 @@
                 </Grid>
             </TabItem>
         </TabControl>
-        
+
     </Grid>
 </Window>

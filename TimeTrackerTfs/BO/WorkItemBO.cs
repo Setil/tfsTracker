@@ -147,7 +147,7 @@ namespace TimeTrackerTfs.BO
                 {
                     Operation = Operation.Add,
                     Path = "/fields/Microsoft.VSTS.Scheduling.CompletedWork",
-                    Value = Math.Round(wik.CompletedWork, 2)
+                    Value = Math.Round(wik.CompletedWork, 4)
                 });
                 j.Add(new JsonPatchOperation
                 {
@@ -161,7 +161,7 @@ namespace TimeTrackerTfs.BO
                     {
                         Operation = Operation.Add,
                         Path = "/fields/Microsoft.VSTS.Scheduling.OriginalEstimate",
-                        Value = Math.Round(wik.RemainingWork,2)
+                        Value = Math.Round(wik.RemainingWork,4)
                     });
                 }
                 var ret = UpdateWorkItem(wik.Id, j);

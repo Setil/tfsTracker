@@ -10,4 +10,10 @@
     <system:String x:Key="NewVersion">nova versão encontrada.</system:String>
     <system:String x:Key="Project">Projeto</system:String>
     <system:String x:Key="Exit">Sair</system:String>
+    <system:String x:Key="TimeWorked">Trabalhado</system:String>
+    <system:String x:Key="Synced">Sincronizado</system:String>
+    <system:String x:Key="IdleTime">Tempo Inativo</system:String>
+    <system:String x:Key="MultiProgressMsg">Mais de uma tarefa em progress coloque uma como Bloked.</system:String>
+    <system:String x:Key="JobTimeMsg">Não Foi Adicionado Tempo da Tarefa.</system:String>
+    <system:String x:Key="Job">Tarefa</system:String>
 </ResourceDictionary>

@@ -10,5 +10,10 @@
     <system:String x:Key="NewVersion">new version found.</system:String>
     <system:String x:Key="Project">Project</system:String>
     <system:String x:Key="Exit">Exit</system:String>
+    <system:String x:Key="TimeWorked">Worked</system:String>
+    <system:String x:Key="Synced">Synced</system:String>
     <system:String x:Key="IdleTime">Idle Time</system:String>
+    <system:String x:Key="MultiProgressMsg">More than one task is In Progress put one as blocked.</system:String>
+    <system:String x:Key="JobTimeMsg">Remaining worked is not setted</system:String>
+    <system:String x:Key="Job">Job</system:String>
 </ResourceDictionary>

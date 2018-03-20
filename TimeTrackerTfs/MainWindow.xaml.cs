@@ -20,6 +20,7 @@ namespace TimeTrackerTfs
         private WorkItemBO _wkBO = new WorkItemBO();
         private WorkItemDTO _wkDTOInProgress = null;
         private bool closeT = false;
+        System.Windows.Forms.NotifyIcon ni;
 
         private string lang = ConfigurationManager.AppSettings["language"];
 
@@ -74,7 +75,7 @@ namespace TimeTrackerTfs
 
         private void InitializeTray()
         {
-            System.Windows.Forms.NotifyIcon ni = new System.Windows.Forms.NotifyIcon();
+            ni = new System.Windows.Forms.NotifyIcon();
             System.Windows.Forms.ContextMenuStrip ctx = new System.Windows.Forms.ContextMenuStrip();
             ctx.Items.Add(FindResource("Exit").ToString());
             ctx.ItemClicked += ctx_click;
@@ -92,6 +93,16 @@ namespace TimeTrackerTfs
             dispatcherTimer.Tick += dispatcherTimer_Tick;
             dispatcherTimer.Interval = new TimeSpan(0,0, tickPeriod);
             dispatcherTimer.Start();
+
+            DispatcherTimer timerUpdate = new DispatcherTimer();
+            timerUpdate.Tick += timerUpdate_Tick;
+            timerUpdate.Interval = new TimeSpan(0, 0, 30);
+            timerUpdate.Start();
+        }
+
+        private void timerUpdate_Tick(object sender, EventArgs e)
+        {
+            processInProgress();
         }
 
         private void ctx_click(object sender, EventArgs e)
@@ -133,6 +144,16 @@ namespace TimeTrackerTfs
                     var boWkInProgress = _wkBO.GetValidInProgress();
                     if (boWkInProgress.isValid())
                     {
+                        if (boWkInProgress.ObjectList.Count() > 1)
+                        {
+                            ni.ShowBalloonTip(50000, FindResource("Job").ToString(), FindResource("MultiProgressMsg").ToString(), System.Windows.Forms.ToolTipIcon.Warning);
+                            return;
+                        }
+                        if (_wkDTOInProgress.RemainingWork == 0)
+                        {
+                            ni.ShowBalloonTip(50000, FindResource("Job").ToString(), FindResource("JobTimeMsg").ToString(), System.Windows.Forms.ToolTipIcon.Warning);
+                            return;
+                        }
                         double percentTime = _wkDTOInProgress.TimeWorkedPercent;
                         _wkDTOInProgress = boWkInProgress.ObjectList.First();
                         _wkDTOInProgress.CompletedWork += percentTime;
@@ -144,10 +165,10 @@ namespace TimeTrackerTfs
                             
                         }
                     }
+                    new Thread(() => { Start(); }).Start();
                 }
                 if (_wkDTOInProgress.TimeWorked >= tickPeriod * 20)
                     checkVersion();
-                processInProgress();
             }
             catch(Exception ex) { }
         }
@@ -160,8 +181,10 @@ namespace TimeTrackerTfs
             lstInProgress.Items.Add(FindResource("Remaining").ToString() + ": " + _wkDTOInProgress.FormattedRemaining);
             lstInProgress.Items.Add(FindResource("Title").ToString() + ": " + _wkDTOInProgress.Title);
             txtTimeWorked.Text = _wkDTOInProgress.FormattedWorkTime;
+            txtSyncWorked.Text = _wkDTOInProgress.FormattedWork;
             txtTimeWorked.Refresh();
             lstInProgress.Refresh();
+            txtSyncWorked.Refresh();
         }
         
         private void Start()
@@ -178,6 +201,8 @@ namespace TimeTrackerTfs
                     this.Dispatcher.Invoke(() =>
                     {
                         _wkDTOInProgress = inProgress;
+                        if (_wkDTOInProgress.RemainingWork == 0)
+                            ni.ShowBalloonTip(50000, FindResource("Job").ToString(), FindResource("JobTimeMsg").ToString(), System.Windows.Forms.ToolTipIcon.Warning);
                         processInProgress();
                     });
                 }

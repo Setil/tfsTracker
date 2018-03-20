@@ -38,9 +38,8 @@ namespace TimeTrackerTfs.Model
         {
             get
             {
-                //60 segundos / 100 porcentagem = 600
-                double div = Math.Round(((double)TimeWorked) / 600,2);
-                return div;
+                var span = new TimeSpan(0,0,(int)TimeWorked);
+                return Math.Round(span.TotalHours,4);
             }
         }
 
@@ -49,6 +48,14 @@ namespace TimeTrackerTfs.Model
             get
             {
                 return formatDoubleTime((CompletedWork + TimeWorkedPercent));
+            }
+        }
+
+        public string FormattedWork
+        {
+            get
+            {
+                return formatDoubleTime((CompletedWork));
             }
         }
 
@@ -63,14 +70,14 @@ namespace TimeTrackerTfs.Model
         private string formatDoubleTime(double time)
         {
             var span = TimeSpan.FromHours((time));
-            string format = "{0}:{1}:{2}";
-            return string.Format(format, (span.Hours + (span.Days*24)).ToString("00"), Math.Abs(span.Minutes).ToString("00"), span.Seconds.ToString("00"));
+            string format = "{0}:{1}";
+            return string.Format(format, (span.Hours + (span.Days*24)).ToString("00"), Math.Abs(span.Minutes).ToString("00"));
         }
 
         public double RemainingCalc
         {
             get {
-                return Math.Round((OriginalEstimate == 0 ? RemainingWork : OriginalEstimate) - CompletedWork, 2);
+                return Math.Round((OriginalEstimate == 0 ? RemainingWork : OriginalEstimate) - CompletedWork, 4);
             }
         }
 
