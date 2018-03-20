@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TimeTrackerTfs", "TimeTrackerTfs\TimeTrackerTfs.csproj", "{788EC415-BCE2-415B-946E-B4F8067FAAAA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TimeTrackerUpdater", "TimeTrackerUpdater\TimeTrackerUpdater.csproj", "{EEA9CE43-3087-435F-9A69-03D5B15C47EF}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{788EC415-BCE2-415B-946E-B4F8067FAAAA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{788EC415-BCE2-415B-946E-B4F8067FAAAA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{788EC415-BCE2-415B-946E-B4F8067FAAAA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{788EC415-BCE2-415B-946E-B4F8067FAAAA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EEA9CE43-3087-435F-9A69-03D5B15C47EF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EEA9CE43-3087-435F-9A69-03D5B15C47EF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EEA9CE43-3087-435F-9A69-03D5B15C47EF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EEA9CE43-3087-435F-9A69-03D5B15C47EF}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		EnterpriseLibraryConfigurationToolBinariesPath = packages\Unity.2.1.505.2\lib\NET35
+	EndGlobalSection
+EndGlobal

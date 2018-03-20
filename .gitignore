@@ -3,3 +3,6 @@
 ################################################################################
 
 /packages
+/TimeTrackerTfs/bin/Debug
+/TimeTrackerTfs/obj/Debug
+/TimeTrackerUpdater

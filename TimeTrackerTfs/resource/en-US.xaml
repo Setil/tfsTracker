@@ -1,0 +1,14 @@
+﻿<ResourceDictionary xmlns ="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:system="clr-namespace:System;assembly=mscorlib">
+    <system:String x:Key="InProgress">In Progress</system:String>
+    <system:String x:Key="ToDo">ToDo</system:String>
+    <system:String x:Key="Start">Start</system:String>
+    <system:String x:Key="Blocked">Blocked</system:String>
+    <system:String x:Key="Changed">Changed</system:String>
+    <system:String x:Key="Remaining">Remaining</system:String>
+    <system:String x:Key="Title">Title</system:String>
+    <system:String x:Key="Wait">Wait...</system:String>
+    <system:String x:Key="NewVersion">new version found.</system:String>
+    <system:String x:Key="Project">Project</system:String>
+    <system:String x:Key="Exit">Exit</system:String>
+    <system:String x:Key="IdleTime">Idle Time</system:String>
+</ResourceDictionary>
