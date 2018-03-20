@@ -112,6 +112,8 @@ namespace TimeTrackerTfs
         {
             try
             {
+                if (_wkDTOInProgress == null)
+                    return;
                 if (lstLog.Items.Count > 20)
                     lstLog.Items.Clear();
                 int idleTime = (int) (TimeControl.GetIdleTime() / 1000);
