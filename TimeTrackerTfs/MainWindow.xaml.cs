@@ -9,6 +9,7 @@ using TimeTrackerTfs.Model;
 using System.Configuration;
 using System.Windows.Media;
 using System.Windows.Controls;
+using System.Globalization;
 
 namespace TimeTrackerTfs
 {
@@ -38,6 +39,8 @@ namespace TimeTrackerTfs
         public MainWindow()
         {
             loadLanguage();
+            CultureInfo.DefaultThreadCurrentCulture = new CultureInfo("en-US");
+            CultureInfo.DefaultThreadCurrentUICulture = new CultureInfo("en-US");
             InitializeComponent();
             new Thread(() => { Start(); }).Start();
             InitializeTimer();

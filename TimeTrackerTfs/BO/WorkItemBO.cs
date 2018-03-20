@@ -138,6 +138,15 @@ namespace TimeTrackerTfs.BO
             }
         }
 
+        private object processDouble(double value)
+        {
+            double dbl = Math.Round(value, 4);
+            string str = dbl.ToString();
+            if (str.Contains(","))
+                return dbl.ToString();
+            return dbl;
+        }
+
         public BusinessObject<WorkItemDTO> UpdateWorked(WorkItemDTO wik)
         {
             try
@@ -147,13 +156,13 @@ namespace TimeTrackerTfs.BO
                 {
                     Operation = Operation.Add,
                     Path = "/fields/Microsoft.VSTS.Scheduling.CompletedWork",
-                    Value = Math.Round(wik.CompletedWork, 4)
+                    Value = processDouble(wik.CompletedWork)
                 });
                 j.Add(new JsonPatchOperation
                 {
                     Operation = wik.RemainingWork == 0 ? Operation.Add : Operation.Replace,
                     Path = "/fields/Microsoft.VSTS.Scheduling.RemainingWork",
-                    Value = wik.RemainingCalc
+                    Value = processDouble(wik.RemainingCalc)
                 });
                 if (wik.OriginalEstimate == 0)
                 {
@@ -161,7 +170,7 @@ namespace TimeTrackerTfs.BO
                     {
                         Operation = Operation.Add,
                         Path = "/fields/Microsoft.VSTS.Scheduling.OriginalEstimate",
-                        Value = Math.Round(wik.RemainingWork,4)
+                        Value = processDouble(wik.RemainingWork)
                     });
                 }
                 var ret = UpdateWorkItem(wik.Id, j);

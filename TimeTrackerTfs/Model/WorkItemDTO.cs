@@ -39,7 +39,7 @@ namespace TimeTrackerTfs.Model
             get
             {
                 var span = new TimeSpan(0,0,(int)TimeWorked);
-                return Math.Round(span.TotalHours,4);
+                return span.TotalHours;
             }
         }
 
@@ -77,7 +77,7 @@ namespace TimeTrackerTfs.Model
         public double RemainingCalc
         {
             get {
-                return Math.Round((OriginalEstimate == 0 ? RemainingWork : OriginalEstimate) - CompletedWork, 4);
+                return (OriginalEstimate == 0 ? RemainingWork : OriginalEstimate) - CompletedWork;
             }
         }
 
