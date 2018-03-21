@@ -12,7 +12,8 @@ namespace TimeTrackerTfs.BO
         {
             if (string.IsNullOrEmpty(VersionFile))
                 return false;
-            using (var sr = File.OpenText(VersionFile))
+            string file = VersionFile + @"\version.txt";
+            using (var sr = File.OpenText(file))
             {
                 string newVer = sr.ReadToEnd();
                 return CurrVersion != newVer;

@@ -8,3 +8,5 @@
 /TimeTrackerUpdater
 /.vs/TimeTrackerTfs/v14
 /.vs/config
+/TimeTrackerTfs/bin/Release
+/TimeTrackerTfs/obj/Release

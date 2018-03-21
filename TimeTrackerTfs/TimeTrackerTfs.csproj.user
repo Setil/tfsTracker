@@ -3,12 +3,16 @@
   <PropertyGroup>
     <ProjectView>ShowAllFiles</ProjectView>
     <PublishUrlHistory>D:\precompiled\tfsTracker\</PublishUrlHistory>
-    <InstallUrlHistory>\\Bbrasfiles2\gedes\Funcionarios\Zanutto\tfsTracker\</InstallUrlHistory>
+    <InstallUrlHistory>\\Bbrasfiles2\gedes\Funcionarios\Zanutto\tfsTracker\|\\Bbrasfiles2\gedes\Funcionarios\Zanutto\tfsTracker\Install\</InstallUrlHistory>
     <SupportUrlHistory />
     <UpdateUrlHistory />
     <BootstrapperUrlHistory />
     <ErrorReportUrlHistory />
     <FallbackCulture>en-US</FallbackCulture>
     <VerifyUploadedFiles>false</VerifyUploadedFiles>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ReferencePath>
+    </ReferencePath>
   </PropertyGroup>
 </Project>

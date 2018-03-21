@@ -11,6 +11,7 @@ using System.Windows.Media;
 using System.Windows.Controls;
 using System.Globalization;
 using System.Collections.Generic;
+using System.Diagnostics;
 
 namespace TimeTrackerTfs
 {
@@ -28,6 +29,12 @@ namespace TimeTrackerTfs
 
         public MainWindow()
         {
+            String thisprocessname = Process.GetCurrentProcess().ProcessName;
+            if (Process.GetProcesses().Count(p => p.ProcessName == thisprocessname) > 1)
+            {
+                this.closeT = true;
+                this.Close();
+            }
             loadConfig();
             loadLanguage();
             InitializeComponent();
@@ -243,7 +250,10 @@ namespace TimeTrackerTfs
         {
             this.Title += " "+ VersionBO.CurrVersion;
             if (VersionBO.HasNewVersion)
-                this.Title += " "+ FindResource("NewVersion").ToString();
+            {
+                ni.ShowBalloonTip(50000,"Tfs Tracker", FindResource("NewVersion").ToString(), System.Windows.Forms.ToolTipIcon.Info);
+
+            }
             this.Refresh();
         }
 

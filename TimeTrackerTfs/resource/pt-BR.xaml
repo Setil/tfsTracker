@@ -7,7 +7,7 @@
     <system:String x:Key="Remaining">Faltando</system:String>
     <system:String x:Key="Title">Titulo</system:String>
     <system:String x:Key="Wait">Aguarde...</system:String>
-    <system:String x:Key="NewVersion">nova versão encontrada.</system:String>
+    <system:String x:Key="NewVersion">Nova versão encontrada.</system:String>
     <system:String x:Key="Project">Projeto</system:String>
     <system:String x:Key="Exit">Sair</system:String>
     <system:String x:Key="TimeWorked">Trabalhado</system:String>
