@@ -16,4 +16,11 @@
     <system:String x:Key="MultiProgressMsg">Mais de uma tarefa em progress coloque uma como Bloked.</system:String>
     <system:String x:Key="JobTimeMsg">Não Foi Adicionado Tempo da Tarefa.</system:String>
     <system:String x:Key="Job">Tarefa</system:String>
+    <system:String x:Key="Config">Configuração</system:String>
+    <system:String x:Key="Language">Indioma</system:String>
+    <system:String x:Key="UpdateTime">Tempo Ciclo</system:String>
+    <system:String x:Key="TfsUrl">Url Tfs</system:String>
+    <system:String x:Key="VersionPath">Caminho Versão</system:String>
+    <system:String x:Key="Save">Salvar</system:String>
+    <system:String x:Key="SaveSuccessMsg">Salvo com Sucesso.Favor reiniciar o Aplicativo.</system:String>
 </ResourceDictionary>

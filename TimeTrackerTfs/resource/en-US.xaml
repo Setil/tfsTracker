@@ -16,4 +16,11 @@
     <system:String x:Key="MultiProgressMsg">More than one task is In Progress put one as blocked.</system:String>
     <system:String x:Key="JobTimeMsg">Remaining worked is not setted</system:String>
     <system:String x:Key="Job">Job</system:String>
+    <system:String x:Key="Config">Config</system:String>
+    <system:String x:Key="Language">Language</system:String>
+    <system:String x:Key="UpdateTime">Update Cicle</system:String>
+    <system:String x:Key="TfsUrl">Tfs Url</system:String>
+    <system:String x:Key="VersionPath">Version Path</system:String>
+    <system:String x:Key="Save">Save</system:String>
+    <system:String x:Key="SaveSuccessMsg">Save Success. Please Restart the application.</system:String>
 </ResourceDictionary>

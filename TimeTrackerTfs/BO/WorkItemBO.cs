@@ -20,10 +20,28 @@ namespace TimeTrackerTfs.BO
 {
     public class WorkItemBO
     {
-        private static string tfsUrl = ConfigurationManager.AppSettings["tfsUrl"];
-        private static string tfsUrlApi = tfsUrl + "_apis/wit/";
-        private static string workitemIds = tfsUrlApi + "workitems?ids={0}&api-version=1.0";
-        private static string workItemQuery = tfsUrlApi + "wiql?api-version=1.0";
+        public static string TfsUrl;
+        private string tfsUrlApi
+        {
+            get
+            {
+                return TfsUrl + "_apis/wit/";
+            }
+        } 
+        private string workitemIds
+        {
+            get
+            {
+                return tfsUrlApi + "workitems?ids={0}&api-version=1.0";
+            }
+        }
+        private string workItemQuery
+        {
+            get
+            {
+                return tfsUrlApi + "wiql?api-version=1.0";
+            }
+        }
         //private string workItemGetSpecific = "workitems/{0}";
 
         private QueryDTO queryInProgressTodo
@@ -51,7 +69,7 @@ namespace TimeTrackerTfs.BO
             }
         }
         private List<WorkItemDTO> processQuery(QueryDTO query)
-        {
+        { 
             List<WorkItemDTO> lstWork = new List<WorkItemDTO>();
             var result = RequestUtil.Post(workItemQuery, JsonConvert.SerializeObject(query), null, CredentialCache.DefaultCredentials);
             WorkItemQueryResult qRes = JsonConvert.DeserializeObject<WorkItemQueryResult>(result);
@@ -75,19 +93,30 @@ namespace TimeTrackerTfs.BO
         private WorkItem UpdateWorkItem(int id, JsonPatchDocument j)
         {
             VssCredentials creds = new VssCredentials(true);
-            VssConnection connection = new VssConnection(new Uri(tfsUrl), creds);
+            VssConnection connection = new VssConnection(new Uri(TfsUrl), creds);
             WorkItemTrackingHttpClient witClient = connection.GetClient<WorkItemTrackingHttpClient>();
             return witClient.UpdateWorkItemAsync(j, id).Result;
         }
 
         public BusinessObject<WorkItemDTO> GetValidInProgress()
         {
-            return processQuery(queryValidInProgress).ToBusinessObject();
+            try
+            {
+                if (string.IsNullOrEmpty(TfsUrl))
+                    throw new Exception("Tfs not defined.");
+                return processQuery(queryValidInProgress).ToBusinessObject();
+            }
+            catch(Exception ex)
+            {
+                return ConstructError<WorkItemDTO>.Set(ex);
+            }
         }
         public BusinessObject<WorkItemDTO> GetToDoInProgress()
         {
             try
             {
+                if (string.IsNullOrEmpty(TfsUrl))
+                    throw new Exception("Tfs not defined.");
                 string cacheName = "_GetToDoInProgress";
                 List<WorkItemDTO> lstWork = CacheUtil.RecuperarCacheObjSemReferencia<List<WorkItemDTO>>(cacheName);
                 if (lstWork != null)
@@ -105,6 +134,8 @@ namespace TimeTrackerTfs.BO
         {
             try
             {
+                if (string.IsNullOrEmpty(TfsUrl))
+                    throw new Exception("Tfs not defined.");
                 if (old != null)
                 {
                     old.Blocked = "Yes";
@@ -151,6 +182,8 @@ namespace TimeTrackerTfs.BO
         {
             try
             {
+                if (string.IsNullOrEmpty(TfsUrl))
+                    throw new Exception("Tfs not defined.");
                 JsonPatchDocument j = new JsonPatchDocument();
                 j.Add(new JsonPatchOperation
                 {

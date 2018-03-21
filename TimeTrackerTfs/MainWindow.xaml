@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TimeTrackerTfs"
         mc:Ignorable="d"
-        Title="Tfs Tracker v.0.0.9" Height="277.561" Width="470.492" Closing="Window_Closing" Icon="Images/timertfs.ico">
+        Title="Tfs Tracker" Height="277.561" Width="470.492" Closing="Window_Closing" Icon="Images/timertfs.ico" ResizeMode="NoResize">
     <Grid>
         <TabControl x:Name="tabControl" Margin="0,0,0,0">
             <TabItem Header="{StaticResource InProgress}">
@@ -14,7 +14,7 @@
                         <ColumnDefinition Width="97*"/>
                         <ColumnDefinition Width="283*"/>
                     </Grid.ColumnDefinitions>
-                    
+
                     <TextBlock x:Name="txtTimeWorked" HorizontalAlignment="Center" Margin="24,16,0,0" TextWrapping="Wrap" Text="00:00" VerticalAlignment="Top" FontSize="36" FontFamily="Arial" Width="92"/>
                     <ListBox x:Name="lstInProgress" Background="LightGray" IsTabStop="False" FontSize="15px" Height="156" VerticalAlignment="Bottom" Grid.ColumnSpan="2"/>
                     <Ellipse x:Name="btnStatus" Grid.Column="1" HorizontalAlignment="Left" Height="20" Margin="310,0,0,0" Stroke="Black" VerticalAlignment="Top" Width="20"/>
@@ -56,6 +56,21 @@
             <TabItem Header="Log">
                 <Grid Background="#FFE5E5E5">
                     <ListBox x:Name="lstLog" HorizontalAlignment="Left" Height="219" VerticalAlignment="Top" Width="456"/>
+                </Grid>
+            </TabItem>
+            <TabItem Header="{StaticResource Config}">
+                <Grid Background="#FFE5E5E5">
+                    <TextBlock x:Name="txtLanguage" HorizontalAlignment="Left" Margin="10,19,0,0" TextWrapping="Wrap" Text="{StaticResource Language}" TextAlignment="Right" VerticalAlignment="Top" Width="77"/>
+                    <ComboBox x:Name="cbxLang" DisplayMemberPath="Description" SelectedValuePath="Code" HorizontalAlignment="Left" Margin="92,19,0,0" VerticalAlignment="Top" Width="120">
+                    </ComboBox>
+                    <TextBlock x:Name="txtUpTime" Margin="217,20,128,0" TextAlignment="Right" TextWrapping="Wrap" Text="{StaticResource UpdateTime}" VerticalAlignment="Top"/>
+                    <TextBox x:Name="txbUptime" HorizontalAlignment="Left" Height="23" Margin="333,19,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="51"/>
+                    <TextBlock x:Name="txtTfsUrl" TextAlignment="Right" Margin="10,47,369,0" TextWrapping="Wrap" Text="{StaticResource TfsUrl}" VerticalAlignment="Top" />
+                    <TextBox x:Name="txbTfsUrl" HorizontalAlignment="Left" Height="23" Margin="92,47,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="354"/>
+                    <TextBlock x:Name="txtVersion" TextAlignment="Right" Margin="10,75,369,0" TextWrapping="Wrap" Text="{StaticResource ResourceKey=VersionPath}" VerticalAlignment="Top" />
+                    <TextBox x:Name="txbVersionLocation" HorizontalAlignment="Left" Height="23" Margin="92,75,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="354"/>
+                    <TextBlock x:Name="txtCurrPath" HorizontalAlignment="Left" Margin="10,195,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top"/>
+                    <Button x:Name="btnSave" Content="{StaticResource Save}" Margin="302,103,12,89" Click="btnSave_Click"/>
                 </Grid>
             </TabItem>
         </TabControl>

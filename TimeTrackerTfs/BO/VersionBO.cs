@@ -7,30 +7,44 @@ namespace TimeTrackerTfs.BO
 {
     public static class VersionBO
     {
-
-        private static string versionFile = ConfigurationManager.AppSettings["checkVersion"];
-
+        public static string VersionFile { get; set; }
         private static bool checkVersion()
         {
-            try
+            if (string.IsNullOrEmpty(VersionFile))
+                return false;
+            using (var sr = File.OpenText(VersionFile))
             {
-                using (var sr = File.OpenText(versionFile))
+                string newVer = sr.ReadToEnd();
+                return CurrVersion != newVer;
+            }
+        }
+
+        public static string CurrVersion
+        {
+            get
+            {
+                try
                 {
-                    string newVer = sr.ReadToEnd();
                     System.Reflection.Assembly assembly = System.Reflection.Assembly.GetExecutingAssembly();
                     FileVersionInfo fvi = FileVersionInfo.GetVersionInfo(assembly.Location);
-                    string accVersion = fvi.FileVersion;
-                    return accVersion != newVer;
+                    return fvi.FileVersion;
+                }
+                catch
+                {
+                    return ("Not Found.");
                 }
             }
-            catch { return false; };
         }
 
         public static bool HasNewVersion
         {
             get
             {
-                return checkVersion();
+                try
+                {
+                    return checkVersion();
+                }
+                catch { return false; }
             }
         }
     }
