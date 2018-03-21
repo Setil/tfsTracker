@@ -174,24 +174,35 @@ namespace TimeTrackerTfs
                 if (_wkDTOInProgress.TimeWorked >= configdto.UpdateCicle * 20)
                     checkVersion();
             }
-            catch (Exception ex) { }
+            catch (Exception ex) {
+                lstLog.Items.Add(ex.Message);
+            }
         }
         private void Cell_Dgrid_DoubleClick(object sender, RoutedEventArgs e)
         {
             try
             {
-                stkWait.Visibility = Visibility.Visible;
-                stkWait.Refresh();
                 var wk = (sender as DataGridCell).BindingGroup.Items[0] as WorkItemDTO;
-                var bo = _wkBO.Play(wk, _wkDTOInProgress);
-                if (bo.isValid())
+                if ((e.Source as DataGridCell).Column.Header.ToString() == "Start")
                 {
-                    _wkDTOInProgress = bo.ObjectList.First();
-                    new Thread(() => { Start(); }).Start();
+                    stkWait.Visibility = Visibility.Visible;
+                    stkWait.Refresh();
+                    var bo = _wkBO.Play(wk, _wkDTOInProgress);
+                    if (bo.isValid())
+                    {
+                        _wkDTOInProgress = bo.ObjectList.First();
+                        new Thread(() => { Start(); }).Start();
+                    }
+                }
+                else
+                {
+                    Process.Start(configdto.TfsUrl+wk.TeamProject+string.Format("/_workitems?id={0}&triage=true&_a=edit", wk.Id));
                 }
 
             }
-            catch { }
+            catch(Exception ex) {
+                lstLog.Items.Add(ex.Message);
+            }
         }
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
